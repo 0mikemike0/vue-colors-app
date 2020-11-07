@@ -1,10 +1,10 @@
 <template lang="pug">
-  #app
+  section Hello
 </template>
 
 <script>
 export default {
-  name: 'App',
+
 };
 </script>
 

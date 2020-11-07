@@ -8,4 +8,11 @@ module.exports = {
         return args;
       });
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: ' @import "@/assets/styles/main.scss"; ',
+      },
+    },
+  },
 };
