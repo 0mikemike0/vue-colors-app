@@ -1,0 +1,39 @@
+@import 'variables';
+@import 'mixins';
+@import 'fonts';
+
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	max-width: 1920px;
+	margin: auto;
+	color: $main-color;
+	font-family: 'Inter', sans-serif;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: $main-color;
+}
+
+
+main {
+	position: relative;
+}
+
+
+
+footer {
+  height: 311px;
+  background-color: #000;
+}
