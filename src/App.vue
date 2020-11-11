@@ -41,18 +41,22 @@
     h1.mobile-title Краски
 
     .main-wrapper
-      <CatalogFilter/>
+      <CatalogFilter v-model="filterData" :categories="categories"/>
 
       .catalog-wrapper
         section.catalog-header
           button.catalog-filters.catalog-header__filters(disabled) Фильтры
-          p.catalog-header__amount 412 товаров
-          button.catalog-sort Сначала дорогие
+          p.catalog-header__amount {{ products.length }} товаров
+          button.catalog-sort(@click="showSort=true") {{ methods[sortMethodId-1].title}}
             span.catalog-sort__arrow
 
-        <CatalogList/>
+        <CatalogList :products="products"/>
 
-    <CatalogSort/>
+      CatalogSort(
+        v-show="showSort"
+        @close="showSort=false"
+        :methods="methods"
+        v-model="sortMethodId")
 
     <CartList/>
 
@@ -60,6 +64,9 @@
 </template>
 
 <script>
+import productsData from './data/products';
+import categories from './data/categories';
+import methods from './data/methods';
 import CartIndicator from './components/CartIndicator.vue';
 import CatalogSlider from './components/CatalogSlider.vue';
 import CatalogList from './components/CatalogList.vue';
@@ -75,6 +82,24 @@ export default {
     CatalogFilter,
     CatalogSort,
     CartList,
+  },
+  data() {
+    return {
+      categories,
+      methods,
+      filterData: [],
+      sortMethodId: 1,
+      showSort: false,
+    };
+  },
+  computed: {
+    products() {
+      return this.filterData.length
+        ? (productsData.filter((product) => (product.categoriesId
+          .filter((item) => this.filterData.includes(item))).length))
+          .sort((prev, next) => next.price - prev.price)
+        : productsData;
+    },
   },
 };
 </script>
@@ -227,6 +252,7 @@ export default {
 }
 
 .main-wrapper {
+  position: relative;
   max-width: 1840px;
   margin: auto;
   padding: 36px 20px 0 20px;

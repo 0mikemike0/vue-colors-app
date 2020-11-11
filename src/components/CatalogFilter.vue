@@ -2,32 +2,39 @@
   aside.catalog-filters
       button.mobile-filters__close
 
-      .switch_box
-        input#new.switch_1(type="checkbox")
-        label(for="new") Новинки
-      .switch_box
-        input#new.switch_1(type="checkbox")
-        label(for="new") Есть в наличии
-      .switch_box
-        input#new.switch_1(type="checkbox")
-        label(for="new") Контрактные
-      .switch_box
-        input#new.switch_1(type="checkbox")
-        label(for="new") Экскслюзивные
-      .switch_box
-        input#new.switch_1(type="checkbox")
-        label(for="new") Распродажа
+      .switch_box(v-for="category in categories" :key="category.id")
+        input.switch_1(
+          type="checkbox"
+          :id="category.id"
+          :value="category.id"
+          v-model="filter")
+        label(:for="category.id") {{ category.title }}
 </template>
 
 <script>
 export default {
-
+  props: ['filterData', 'categories'],
+  model: {
+    prop: 'filterData',
+    event: 'filterChange',
+  },
+  computed: {
+    filter: {
+      get() {
+        return this.filterData;
+      },
+      set(value) {
+        this.$emit('filterChange', value);
+      },
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .catalog-filters {
   margin-top: 21px;
+  flex-shrink: 0;
 }
 .switch_box {
   margin: 10px 0 0 4px;
@@ -38,6 +45,9 @@ export default {
     line-height: 100%;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+    &:hover {
+    cursor: pointer;
+    }
   }
 }
 
@@ -56,6 +66,9 @@ input[type="checkbox"].switch_1{
   outline: none;
   -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    }
 }
 
 input[type="checkbox"].switch_1:checked{

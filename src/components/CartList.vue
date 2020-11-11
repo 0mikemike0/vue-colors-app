@@ -35,7 +35,7 @@ export default {
   position: fixed;
   top: 0;
   right: 0;
-  visibility: visible;
+  visibility: hidden;
   opacity: 1;
   background: rgba(0, 0, 0 , 0.7);
   z-index: 10;
@@ -53,7 +53,7 @@ export default {
   right: 0;
   background-color: #fff;
   position: absolute;
-  transition: left 0.25s ease-in-out;
+  transition: right 0.25s ease-in-out;
   .cart-header {
     display: flex;
     justify-content: space-between;

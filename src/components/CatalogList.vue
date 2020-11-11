@@ -1,267 +1,29 @@
 <template lang="pug">
   section.catalog-items
     ul.catalog-items__list
-      li
+      li(v-for='product in products' :key='product.id')
         article.catalog-items__item.catalog-item
-          a(href="")
+          a(href="#")
             .image-wrapper
               img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
+                :src="product.image",
+                :alt="product.title"
               )
               img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
+                :src="product.imageHover",
+                :alt="product.title"
               )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
+            h3.catalog-item__title {{ product.title }}
+            p.catalog-item__number {{ product.articleNumber }}
           .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
-            button.catalog-item__button
-      li
-        article.catalog-items__item.catalog-item
-          a(href="")
-            .image-wrapper
-              img.catalog-item__image(
-                src="@/assets/images/Photo1.png",
-                alt=""
-              )
-              img.catalog-item__image_hover(
-                src="@/assets/images/Photo0.png",
-                alt=""
-              )
-            h3.catalog-item__title Краска Wallquest, Brownsone
-            p.catalog-item__number MS90102
-          .footer-wrapper
-            p.catalog-item__cost 6000 &#8381
+            p.catalog-item__cost {{ product.price }} &#8381
             button.catalog-item__button
 </template>
 
 <script>
 
 export default {
-
+  props: ['products'],
 };
 </script>
 
@@ -288,7 +50,7 @@ export default {
   &__title {
     font-weight: 300;
     font-size: 16px;
-    padding-top: 16px;
+    padding-top: 11px;
     letter-spacing: 0.02em;
   }
   &__number {
@@ -302,6 +64,8 @@ export default {
   }
   &__cost {
     letter-spacing: 0.03em;
+    font-weight: 600;
+    font-size: 16px;
   }
   &__button {
     visibility: hidden;

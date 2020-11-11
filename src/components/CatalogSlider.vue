@@ -2,7 +2,7 @@
   section.slider
       .slider-wrapper
         article.slide.slider__slide
-          img.slider__image(src="@/assets/images/Slider-Background.png", alt="Background-image")
+          img.slider__image(src="/img/Slider-Background.png", alt="Background-image")
           .slide-wrapper
             h1.slide__title Краски
             p.slide__details Идеально подходят для стен и других поверхностей.
