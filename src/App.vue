@@ -27,10 +27,11 @@
             button.buttons__profile
           li.buttons__item
             button.buttons__favourites
-          <CartIndicator/>
+          li.buttons__item(@click="showCart=true")
+            button.buttons__cart 4
 
   main.main
-    <CatalogSlider/>
+    CatalogSlider
 
     section.breadcrumbs
       .breadcrumbs-wrapper
@@ -41,33 +42,35 @@
     h1.mobile-title Краски
 
     .main-wrapper
-      <CatalogFilter v-model="filterData" :categories="categories"/>
+      CatalogFilter(v-model="filterData" :categories="filterCategories")
 
       .catalog-wrapper
         section.catalog-header
           button.catalog-filters.catalog-header__filters(disabled) Фильтры
-          p.catalog-header__amount {{ products.length }} товаров
-          button.catalog-sort(@click="showSort=true") {{ methods[sortMethodId-1].title}}
+          p.catalog-header__amount {{ filtredProducts.length }} товаров
+          button.catalog-sort(@click="showSort=true") {{ sortMethods[sortMethodId-1].title}}
             span.catalog-sort__arrow
 
-        <CatalogList :products="products"/>
+        CatalogList(:products="sortedProducts")
 
       CatalogSort(
         v-show="showSort"
         @close="showSort=false"
-        :methods="methods"
+        :methods="sortMethods"
         v-model="sortMethodId")
 
-    <CartList/>
+    CartList(
+      v-show="showCart"
+      @close="showCart=false"
+    )
 
   footer.footer
 </template>
 
 <script>
 import productsData from './data/products';
-import categories from './data/categories';
-import methods from './data/methods';
-import CartIndicator from './components/CartIndicator.vue';
+import filterCategories from './data/categories';
+import sortMethods from './data/methods';
 import CatalogSlider from './components/CatalogSlider.vue';
 import CatalogList from './components/CatalogList.vue';
 import CatalogFilter from './components/CatalogFilter.vue';
@@ -76,7 +79,6 @@ import CartList from './components/CartList.vue';
 
 export default {
   components: {
-    CartIndicator,
     CatalogSlider,
     CatalogList,
     CatalogFilter,
@@ -85,22 +87,57 @@ export default {
   },
   data() {
     return {
-      categories,
-      methods,
+      productsData,
+      filterCategories,
+      sortMethods,
       filterData: [],
       sortMethodId: 1,
       showSort: false,
+      showCart: false,
     };
   },
   computed: {
-    products() {
+    filtredProducts() {
       return this.filterData.length
-        ? (productsData.filter((product) => (product.categoriesId
-          .filter((item) => this.filterData.includes(item))).length))
-          .sort((prev, next) => next.price - prev.price)
-        : productsData;
+        ? this.productsData.filter((product) => (product.categoriesId
+          .filter((item) => this.filterData.includes(item))).length)
+        : this.productsData;
+    },
+    sortedProducts() {
+      switch (this.sortMethodId) {
+        case 1: return this.filtredProducts.slice()
+          .sort((prev, next) => next.price - prev.price);
+
+        case 2: return this.filtredProducts.slice()
+          .sort((prev, next) => prev.price - next.price);
+
+        case 3: return this.filtredProducts.slice()
+          .sort((prev, next) => next.likes - prev.likes);
+
+        case 4: return this.filtredProducts.slice()
+          .sort((prev, next) => prev.date - next.date);
+
+        default: return this.filtredProducts;
+      }
     },
   },
+  // methods: {
+  //   updateList() {
+  //     let sortedList = [];
+  //     switch (this.sortMethodId) {
+  //       case 1: sortedList = this.products.slice()
+  //         .sort((prev, next) => next.price - prev.price);
+  //         break;
+
+  //       case 2: sortedList = this.products.slice()
+  //         .sort((prev, next) => prev.price - next.price);
+  //         break;
+
+  //       default: return this.products;
+  //     }
+  //     return sortedList;
+  //   },
+  // },
 };
 </script>
 
@@ -177,6 +214,10 @@ export default {
   }
   &__item {
     margin-left: 24px;
+
+    & button {
+      cursor: pointer;
+    }
   }
   &__search {
     display: inline-block;

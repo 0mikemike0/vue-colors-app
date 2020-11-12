@@ -8,7 +8,8 @@ export default [
     image: '/img/Photo1.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo1.png',
-    popular: false,
+    likes: 30,
+    date: new Date(2011, 0, 1),
   },
   {
     id: 2,
@@ -19,7 +20,8 @@ export default [
     image: '/img/Photo2.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo2.png',
-    popular: false,
+    likes: 130,
+    date: new Date(2011, 0, 1),
   },
   {
     id: 3,
@@ -30,7 +32,8 @@ export default [
     image: '/img/Photo3.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo3.png',
-    popular: false,
+    likes: 50,
+    date: new Date(2011, 0, 1),
   },
   {
     id: 4,
@@ -41,7 +44,8 @@ export default [
     image: '/img/Photo4.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo4.png',
-    popular: true,
+    likes: 5,
+    date: new Date(2011, 0, 1),
   },
   {
     id: 5,
@@ -52,7 +56,8 @@ export default [
     image: '/img/Photo5.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo5.png',
-    popular: false,
+    likes: 13,
+    date: new Date(2011, 0, 1),
   },
   {
     id: 6,
@@ -63,7 +68,8 @@ export default [
     image: '/img/Photo6.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo6.png',
-    popular: false,
+    likes: 100,
+    date: new Date(2010, 0, 1),
   },
   {
     id: 7,
@@ -74,7 +80,8 @@ export default [
     image: '/img/Photo7.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo7.png',
-    popular: true,
+    likes: 80,
+    date: new Date(2011, 0, 1),
   },
   {
     id: 8,
@@ -85,7 +92,8 @@ export default [
     image: '/img/Photo8.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo8.png',
-    popular: true,
+    likes: 90,
+    date: new Date(2011, 0, 1),
   },
   {
     id: 9,
@@ -96,7 +104,8 @@ export default [
     image: '/img/Photo9.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo9.png',
-    popular: true,
+    likes: 1,
+    date: new Date(2011, 0, 1),
   },
   {
     id: 10,
@@ -107,7 +116,8 @@ export default [
     image: '/img/Photo10.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo10.png',
-    popular: false,
+    likes: 0,
+    date: new Date(2010, 0, 1),
   },
   {
     id: 11,
@@ -118,7 +128,8 @@ export default [
     image: '/img/Photo11.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo11.png',
-    popular: false,
+    likes: 23,
+    date: new Date(2010, 0, 1),
   },
   {
     id: 12,
@@ -129,7 +140,8 @@ export default [
     image: '/img/Photo12.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo12.png',
-    popular: true,
+    likes: 11,
+    date: new Date(2011, 0, 1),
   },
   {
     id: 13,
@@ -140,7 +152,8 @@ export default [
     image: '/img/Photo13.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo13.png',
-    popular: true,
+    likes: 19,
+    date: new Date(2011, 0, 1),
   },
   {
     id: 14,
@@ -151,7 +164,8 @@ export default [
     image: '/img/Photo14.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo14.png',
-    popular: true,
+    likes: 38,
+    date: new Date(2011, 0, 1),
   },
   {
     id: 15,
@@ -162,6 +176,7 @@ export default [
     image: '/img/Photo15.png',
     imageHover: '/img/PhotoHover.png',
     imageCart: '/img/cart/Photo15.png',
-    popular: false,
+    likes: 69,
+    date: new Date(2010, 0, 1),
   },
 ];

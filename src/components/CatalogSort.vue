@@ -18,14 +18,7 @@ export default {
   methods: {
     sortMethodChange(value) {
       this.$emit('sortMethodChange', value);
-      // this.$emit('close');
     },
-    // close(value) {
-    //   const sort = document.querySelector('.sort');
-    //   if (value !== sort) {
-    //     this.$emit('close');
-    //   }
-    // },
   },
 };
 </script>
@@ -37,7 +30,7 @@ export default {
   position: fixed;
   top: 0;
   right: 0;
-  // visibility: hidden;
+  // visibility: hidden; может пригодится для на анимации
   opacity: 1;
   background: rgba(0, 0, 0 , 0.7);
   z-index: 10;
