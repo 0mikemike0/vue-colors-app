@@ -31,6 +31,10 @@ main {
 	position: relative;
 }
 
+button {
+	cursor: pointer;
+}
+
 button:active, button:focus {
 	outline: none;
 	cursor: pointer;
