@@ -31,7 +31,10 @@ main {
 	position: relative;
 }
 
-
+button:active, button:focus {
+	outline: none;
+	cursor: pointer;
+}
 
 footer {
   height: 311px;

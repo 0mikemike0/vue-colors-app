@@ -1,9 +1,10 @@
 <template lang="pug">
-  aside.catalog-filters
-      button.mobile-filters__close
+  aside.catalog-filters(@click.self="$emit('close')")
+    .aside-wrapper
+      button.mobile-filters__close(@click.self="$emit('close')")
 
       .switch_box(v-for="category in categories" :key="category.id")
-        input.switch_1(
+        input.switch(
           type="checkbox"
           :id="category.id"
           :value="category.id"
@@ -35,7 +36,33 @@ export default {
 .catalog-filters {
   margin-top: 21px;
   flex-shrink: 0;
+  @media (max-width: 960px) {
+    margin-top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    // visibility: hidden; может пригодится для на анимации
+    opacity: 1;
+    background: rgba(0, 0, 0 , 0.7);
+    z-index: 10;
+    transition: opacity 0.25s ease-in-out, visibility 0.25s ease-in-out;
+  }
 }
+
+.aside-wrapper {
+  @media (max-width: 960px) {
+    position: absolute;
+    padding: 54px 0 0 24px;
+    top: 160px;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 24px 24px 0px 0px;
+  }
+}
+
 .switch_box {
   margin: 10px 0 0 4px;
   display: flex;
@@ -51,8 +78,7 @@ export default {
   }
 }
 
-input[type="checkbox"].switch_1{
-  // font-size: 30px;
+input[type="checkbox"].switch{
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -71,11 +97,11 @@ input[type="checkbox"].switch_1{
     }
 }
 
-input[type="checkbox"].switch_1:checked{
+input[type="checkbox"].switch:checked{
   background: #7BB899;
 }
 
-input[type="checkbox"].switch_1:after{
+input[type="checkbox"].switch:after{
   position: absolute;
   content: "";
   width: 8px;
@@ -88,14 +114,24 @@ input[type="checkbox"].switch_1:after{
   transition: all .2s ease-in-out;
 }
 
-input[type="checkbox"].switch_1:checked:after{
+input[type="checkbox"].switch:checked:after{
   left: 20px;
 }
 
 .mobile-filters__close {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  transform: translateX(-50%);
   border: none;
-  background: transparent;
-  @include visually-hidden;
+  width: 28px;
+  height: 4px;
+  border-radius: 40px;
+  background: $main-color;
+  cursor: pointer;
+  @media (min-width: 961px){
+    @include visually-hidden;
+  }
 }
 
 </style>

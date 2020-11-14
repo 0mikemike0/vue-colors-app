@@ -3,7 +3,14 @@
   header.header
     .header-wrapper
       button.burger
-      img.logo.header__logo(src="@/assets/images/Logo-SVG.svg", alt="Logo")
+        span.burger__line
+        span.burger__line
+        span.burger__line
+      a(href="#")
+        picture
+          source(media='(max-width: 960px)' srcset='@/assets/images/SmallLogo.svg')
+          source(media="(min-width: 961px)" srcset="@/assets/images/Logo-SVG.svg")
+          img.logo.header__logo(src="@/assets/images/Logo-SVG.svg", alt="Logo")
       nav.nav
         ul.nav__list
           li.nav__item
@@ -27,8 +34,8 @@
             button.buttons__profile
           li.buttons__item
             button.buttons__favourites
-          li.buttons__item(@click="showCart=true")
-            button.buttons__cart 4
+          li.buttons__item
+            button.buttons__cart(@click="showCart=true") {{ cartAmount }}
 
   main.main
     CatalogSlider
@@ -42,12 +49,16 @@
     h1.mobile-title Краски
 
     .main-wrapper
-      CatalogFilter(v-model="filterData" :categories="filterCategories")
+      CatalogFilter(
+        v-show="showFilters"
+        @close="showFilters=false"
+        v-model="filterData"
+        :categories="filterCategories")
 
       .catalog-wrapper
         section.catalog-header
-          button.catalog-filters.catalog-header__filters(disabled) Фильтры
-          p.catalog-header__amount {{ filtredProducts.length }} товаров
+          button.catalog-filters.catalog-header__filters(@click="showFilters=true") Фильтры
+          p.catalog-header__amount {{ sortedProducts.length  }} товаров
           button.catalog-sort(@click="showSort=true") {{ sortMethods[sortMethodId-1].title}}
             span.catalog-sort__arrow
 
@@ -68,6 +79,7 @@
 </template>
 
 <script>
+import store from './data/store';
 import productsData from './data/products';
 import filterCategories from './data/categories';
 import sortMethods from './data/methods';
@@ -88,12 +100,15 @@ export default {
   data() {
     return {
       productsData,
+      sharedState: store.state,
       filterCategories,
       sortMethods,
       filterData: [],
       sortMethodId: 1,
       showSort: false,
+      showFilters: true,
       showCart: false,
+      width: 0,
     };
   },
   computed: {
@@ -120,25 +135,42 @@ export default {
         default: return this.filtredProducts;
       }
     },
+    cartAmount() {
+      return store.getCartTotalAmount();
+    },
   },
-  // methods: {
-  //   updateList() {
-  //     let sortedList = [];
-  //     switch (this.sortMethodId) {
-  //       case 1: sortedList = this.products.slice()
-  //         .sort((prev, next) => next.price - prev.price);
-  //         break;
-
-  //       case 2: sortedList = this.products.slice()
-  //         .sort((prev, next) => prev.price - next.price);
-  //         break;
-
-  //       default: return this.products;
-  //     }
-  //     return sortedList;
-  //   },
-  // },
+  methods: {
+    updateWidth() {
+      this.width = window.innerWidth;
+      if (this.width <= 960) {
+        this.showFilters = false;
+      } else {
+        this.showFilters = true;
+      }
+    },
+  },
+  created() {
+    this.updateWidth();
+    window.addEventListener('resize', this.updateWidth);
+  },
+  watch: {
+    showSort(value) {
+      if (value === true) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    },
+    showCart(value) {
+      if (value === true) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    },
+  },
 };
+
 </script>
 
 <style lang="scss">
@@ -148,19 +180,59 @@ export default {
   max-width: 1840px;
   margin: auto;
   padding: 36px 20px 38px 20px;
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  @media(max-width: 960px){
+    padding: 63px 20px 20px 20px;
   }
+  }
+
   &__logo {
     margin-left: 4px;
   }
 }
+
 .burger {
-  @include visually-hidden;
+  position: relative;
+  width: 24px;
+  height: 14px;
+  margin: 2px 0 0 5px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  @media (min-width: 1661px) {
+      @include visually-hidden;
+  }
+
+  &__line {
+    position: absolute;
+    display: inline-block;
+    height: 2px;
+    width: 100%;
+    background-color: $main-color;
+  }
+  &__line:nth-child(1) {
+    right: 0;
+    top: 0;
+  }
+
+  &__line:nth-child(2) {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .burger__line:nth-child(3) {
+    right: 0;
+    bottom: 0;
+  }
 }
 
 .nav {
+  padding-right: 385px;
   &__list {
     margin-left: 81px;
     display: flex;
@@ -174,10 +246,16 @@ export default {
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
+  @media (max-width: 1660px) {
+    @include visually-hidden;
+  }
 }
 
 .header__contact {
   margin: 0 0 0 22px;
+  @media(max-width: 960px) {
+    @include visually-hidden;
+  }
 }
 
 .contact {
@@ -214,10 +292,9 @@ export default {
   }
   &__item {
     margin-left: 24px;
-
-    & button {
-      cursor: pointer;
-    }
+    @media(max-width: 960px){
+      margin-left: 0;
+  }
   }
   &__search {
     display: inline-block;
@@ -230,6 +307,9 @@ export default {
     background-size: 118px 24px;
     background-position: 2px 0;
     background-repeat: no-repeat;
+    @media(max-width: 960px) {
+    @include visually-hidden;
+  }
   }
   &__profile {
     display: inline-block;
@@ -242,6 +322,9 @@ export default {
     background-size: 118px 24px;
     background-position: -46px 0;
     background-repeat: no-repeat;
+    @media(max-width: 960px) {
+    @include visually-hidden;
+  }
   }
   &__favourites {
     display: inline-block;
@@ -254,6 +337,9 @@ export default {
     background-size: 118px 24px;
     background-position: -95px 0;
     background-repeat: no-repeat;
+    @media(max-width: 960px) {
+    @include visually-hidden;
+  }
   }
   &__cart {
     display: inline-block;
@@ -263,13 +349,20 @@ export default {
     border: none;
     background-color: #7BB899;
     border-radius: 50%;
+
   }
 }
 
 .breadcrumbs-wrapper {
   position: absolute;
+  margin: 0 20px 0;
   top: 25px;
-  left: 65px;
+  left: 45px;
+  @media(max-width: 1024px) {
+    position: unset;
+    padding: 8px 0 0 5px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06)
+  }
 }
   .breadcrumbs {
     &__item {
@@ -279,6 +372,7 @@ export default {
     text-transform: uppercase;
     color: #FFFFFF;
     opacity: 0.3;
+    @media (max-width: 1024px){color: $main-color;}
   }
   &__item:after {
     content: "\2022";
@@ -296,14 +390,21 @@ export default {
   position: relative;
   max-width: 1840px;
   margin: auto;
-  padding: 36px 20px 0 20px;
+  padding: 36px 20px 0 17px;
   display: flex;
   }
 
 .mobile-title {
-  @include visually-hidden;
-}
+  margin: 46px 20px 0 24px;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 88%;
+  letter-spacing: -0.04em;
 
+ @media (min-width: 1025px){
+    @include visually-hidden;
+  }
+}
 .catalog-header {
   flex-basis: 100%;
   display: flex;
@@ -312,7 +413,15 @@ export default {
   .catalog-filters {
     border: none;
     background: transparent;
-    @include visually-hidden;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    @media(min-width: 961px){
+      @include visually-hidden;
+    }
   }
 
   &__amount {
@@ -321,7 +430,10 @@ export default {
     line-height: 15px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+    @media(max-width: 960px){
+      @include visually-hidden;
     }
+  }
 
   .catalog-sort {
     margin-right: 2px;
@@ -344,12 +456,16 @@ export default {
     }
   }
 
-  }
+}
 
 .catalog-wrapper {
   margin: 32px 0 0 134px;
   flex-basis: 100%;
   display: flex;
   flex-wrap: wrap;
+
+  @media(max-width: 960px){
+    margin: 12px 0 0 7px;
+  }
 }
 </style>

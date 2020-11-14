@@ -6,32 +6,69 @@
         button.cart-header__close(@click.self="$emit('close')")
       section.cart-items
         .cart-items__header
-          p.cart-items__amount 4 товара
-          button.cart-items__clean Очистить список
-        form.cart-form(action="#", method="POST")
+          p.cart-items__amount {{ cartAmount }} товаров
+          button.cart-items__clean(@click="cleanCart") Очистить список
+        form.cart-form
           ul.cart-form__list
-            li.cart-form__item.cart-item
-              img.cart-item__image(src="/img/cart/Photo1.png", alt="Название товара")
-              .cart-item__detailes
-                h3.cart-item__title Краска Wallquest, Brownsone MS90102
-                p.cart-item__cost 6000 &#8381
-              .cart-item__counter
-                button.cart-item__minus(type="button", aria-label="Убрать один товар")
-                input.cart-item__input(type="text", value="1", name="count")
-                button.cart-item__plus(type="button", aria-label="Добавить один товар")
-              button.cart-item__del(type="button", aria-label="Удалить товар из корзины")
+            li.cart-form__item.cart-item(
+              v-for="item in cartList"
+              :key="item.id")
+              img.cart-item__image(
+                :src="item.product.imageCart"
+                :alt="item.product.title"
+                :class="{'cart-item__image_deleted': item.temporaryFlag === true}")
+              .cart-item__detailes(
+                :class="{'cart-item__detailes_deleted': item.temporaryFlag === true}")
+                h3.cart-item__title {{ item.product.title }} {{ item.product.articleNumber }}
+                p.cart-item__cost {{ item.amount * item.product.price }} &#8381
+              AmountChange(:item="item")
+              button.cart-item__del(
+                v-show="!item.temporaryFlag"
+                @click="toggleCartFlag(item.id)"
+                type="button", aria-label="Удалить товар из корзины")
               button.cart-item__rel(
-                  v-show="false" type="button", aria-label="Восстановить удалённый товар")
+                v-show="item.temporaryFlag"
+                @click="toggleCartFlag(item.id)"
+                type="button", aria-label="Восстановить удалённый товар")
           section.cart-footer
             .cart-total
               p.cart-total__label Итого
-              p.cart-total__cost 6000 &#8381
+              p.cart-total__cost {{ cartTotal }} &#8381
             button.cart-footer__order(type="submit", aria-label="Оформить заказ") Оформить заказ
 </template>
 
 <script>
+import store from '../data/store';
+import AmountChange from './AmountChange.vue';
 
 export default {
+  data() {
+    return {
+      sharedState: store.state,
+    };
+  },
+  components: {
+    AmountChange,
+  },
+  computed: {
+    cartList() {
+      return store.getCartList();
+    },
+    cartTotal() {
+      return store.getCartTotalPrice();
+    },
+    cartAmount() {
+      return store.getCartTotalAmount();
+    },
+  },
+  methods: {
+    toggleCartFlag(value) {
+      store.toggleCartFlag(value);
+    },
+    cleanCart() {
+      store.cleanCart();
+    },
+  },
 };
 </script>
 
@@ -54,13 +91,19 @@ export default {
   }
 }
 .cart {
-  padding: 29px 40px 0 40px;
+  padding: 29px 40px 120px 40px;
   height: 100%;
   width: 600px;
   right: 0;
   background-color: #fff;
   position: absolute;
   transition: right 0.25s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 600px) {
+    width: 375px;
+  }
+
   .cart-header {
     display: flex;
     justify-content: space-between;
@@ -83,16 +126,21 @@ export default {
     cursor: pointer;
     }
   }
-  .cart-items__header {
+  .cart-items {
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+
+    &__header {
     margin-top: 83px;
     display: flex;
     justify-content: space-between;
-
-    .cart-items__amount {
+    }
+    &__amount {
       font-size: 14px;
       line-height: 112%;
     }
-    .cart-items__clean {
+    &__clean {
       border: none;
       background-color: transparent;
       text-transform: uppercase;
@@ -100,13 +148,17 @@ export default {
       font-size: 12px;
       line-height: 16px;
       opacity: 0.4;
+
+      &:hover {
+      cursor: pointer;
+      }
     }
   }
 }
 .cart-form {
-  .cart-form__list {
-    margin-top: 10px;
-  }
+  overflow-y: scroll;
+  margin-top: 10px;
+
   &__item {
     margin-bottom: 20px;
     padding-top: 4px;
@@ -118,9 +170,19 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+  }
+  &__image_deleted,
+  &__counter_deleted,
+  &__detailes_deleted {
+    opacity: 0.2;
+  }
   &__detailes{
     padding: 16px 40px 0 8px;
+    @media (max-width: 600px) {
+    order: 1;
+  }
   }
 
   &__title {
@@ -138,8 +200,11 @@ export default {
   }
 
   &__counter {
-    margin: 15px 23px 0 10px;
+    margin: 15px 21px 0 10px;
     display: flex;
+    @media (max-width: 600px) {
+    order: 1;
+  }
   }
 
   &__minus {
@@ -151,6 +216,9 @@ export default {
     background-position: 11px 4px;
     background-color: #F2F2F2;
     border-radius: 4px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__input {
@@ -161,6 +229,9 @@ export default {
     font-weight: normal;
     font-size: 16px;
     line-height: 100%;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__plus {
@@ -172,21 +243,37 @@ export default {
     background-position: 11px 4px;
     background-color: #F2F2F2;
     border-radius: 4px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__del {
-    width: 39px;
-    height: 24px;
+    width: 45px;
+    height: 26px;
     margin: 11px 5px 0 10px;
     border: none;
     background: url('~@/assets/images/cartx.svg');
     background-repeat: no-repeat;
     background-position: 3px 2px;
     background-color: transparent;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__rel {
-    margin: 5px 10px 0 10px;
+    width: 45px;
+    height: 26px;
+    margin: 11px 5px 0 10px;
+    border: none;
+    background: url('~@/assets/images/recover.svg');
+    background-repeat: no-repeat;
+    background-position: 3px 2px;
+    background-color: transparent;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -197,6 +284,9 @@ bottom: 40px;
 display: flex;
 justify-content: space-between;
 align-items: center;
+@media (max-width: 600px) {
+    width: 310px;
+  }
 .cart-total {
   margin-top: 5px;
   &__label{
@@ -216,11 +306,16 @@ align-items: center;
   height: 58px;
   background: #7BB899;
   border-radius: 4px;
+  border: none;
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  @media (max-width: 600px) {
+    width: 156px;
+    height: 40px;
+  }
 }
 }
 
