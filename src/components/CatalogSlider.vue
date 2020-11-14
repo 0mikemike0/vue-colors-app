@@ -33,12 +33,12 @@ export default {
   data() {
     return {
       sliderItems: [
-        { id: 1, name: 'Slide1', src: '/img/slider/Slide1.png' },
-        { id: 2, name: 'Slide2', src: '/img/slider/Slide2.png' },
-        { id: 3, name: 'Slide3', src: '/img/slider/Slide3.png' },
-        { id: 4, name: 'Slide4', src: '/img/slider/Slide4.png' },
-        { id: 5, name: 'Slide5', src: '/img/slider/Slide5.png' },
-        { id: 6, name: 'Slide6', src: '/img/slider/Slide6.png' },
+        { id: 1, name: 'Slide1', src: './img/slider/Slide1.jpg' },
+        { id: 2, name: 'Slide2', src: './img/slider/Slide2.jpg' },
+        { id: 3, name: 'Slide3', src: './img/slider/Slide3.jpg' },
+        { id: 4, name: 'Slide4', src: './img/slider/Slide4.jpg' },
+        { id: 5, name: 'Slide5', src: './img/slider/Slide5.jpg' },
+        { id: 6, name: 'Slide6', src: './img/slider/Slide6.jpg' },
       ],
       currentSlideIndex: 0,
     };
