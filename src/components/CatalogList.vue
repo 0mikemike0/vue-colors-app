@@ -3,22 +3,21 @@
     ul.catalog-items__list
       li.catalog-items__item(v-for='product in products' :key='product.id')
         article.catalog-items__article.catalog-item
-          a(href="#")
-            .image-wrapper
-              picture
-                source(media='(max-width: 960px)' :srcset='product.imageMobile')
-                source(media="(min-width: 961px)" :srcset="product.image")
-                img.catalog-item__image(
-                  :src="product.image",
-                  :alt="product.title"
-                )
-              picture
-                source(media='(max-width: 960px)' :srcset='product.imageMobileHover')
-                source(media="(min-width: 961px)" :srcset="product.imageHover")
-                img.catalog-item__image_hover(
-                  :src="product.imageHover",
-                  :alt="product.title"
-                )
+          .image-wrapper
+            picture
+              source(media='(max-width: 960px)' :srcset='product.imageMobile')
+              source(media="(min-width: 961px)" :srcset="product.image")
+              img.catalog-item__image(
+                :src="product.image",
+                :alt="product.title"
+              )
+            picture
+              source(media='(max-width: 960px)' :srcset='product.imageMobileHover')
+              source(media="(min-width: 961px)" :srcset="product.imageHover")
+              img.catalog-item__image_hover(
+                :src="product.imageHover",
+                :alt="product.title"
+              )
             h3.catalog-item__title {{ product.title }}
             p.catalog-item__number {{ product.articleNumber }}
           .footer-wrapper
