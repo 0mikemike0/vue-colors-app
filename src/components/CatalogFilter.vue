@@ -3,7 +3,7 @@
     .aside-wrapper
       button.mobile-filters__close(@click.self="$emit('close')")
 
-      .switch_box(v-for="category in categories" :key="category.id")
+      .switch-box(v-for="category in categories" :key="category.id")
         input.switch(
           type="checkbox"
           :id="category.id"
@@ -33,9 +33,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .catalog-filters {
   margin-top: 21px;
   flex-shrink: 0;
+
   @media (max-width: 960px) {
     margin-top: 0;
     width: 100%;
@@ -43,7 +45,6 @@ export default {
     position: fixed;
     top: 0;
     right: 0;
-    // visibility: hidden; может пригодится для на анимации
     opacity: 1;
     background: rgba(0, 0, 0 , 0.7);
     z-index: 10;
@@ -63,15 +64,17 @@ export default {
   }
 }
 
-.switch_box {
+.switch-box {
   margin: 10px 0 0 4px;
   display: flex;
   align-items: center;
+
   & label {
     font-size: 12px;
     line-height: 100%;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+
     &:hover {
     cursor: pointer;
     }
@@ -92,6 +95,7 @@ input[type="checkbox"].switch{
   outline: none;
   -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
+
   &:hover {
     cursor: pointer;
     }
@@ -129,6 +133,7 @@ input[type="checkbox"].switch:checked:after{
   border-radius: 40px;
   background: $main-color;
   cursor: pointer;
+
   @media (min-width: 961px){
     @include visually-hidden;
   }

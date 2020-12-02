@@ -39,31 +39,39 @@ export default {
 </script>
 
 <style lang="scss">
-.catalog-items__list {
-  margin: 43px 0 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  @media(max-width: 960px){
-    margin: 24px 0 0 0;
+
+.catalog-items{
+  &__list {
+    margin: 43px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    @media(max-width: 960px){
+      margin: 24px 0 0 0;
+    }
   }
 
-  .catalog-items__item {
+  &__item {
     flex-basis: min-content;
     margin-right: 21px;
   }
 }
+
 .catalog-item {
   margin: 0 0 15px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
   & .image-wrapper {
     position: relative;
 
   }
+
   &__image {
     position: absolute;
     left: 0;
     top: 0;
   }
+
   &__title {
     font-weight: 300;
     font-size: 16px;
@@ -71,23 +79,28 @@ export default {
     line-height: 112%;
     letter-spacing: 0.02em;
   }
+
   &__number {
     margin-top: -2px;
   }
+
   & .footer-wrapper {
     margin: 15px 0 15px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     @media(max-width: 960px){
       margin: 20px 0 35px 0;
     }
   }
+
   &__cost {
     letter-spacing: 0.03em;
     font-weight: 600;
     font-size: 16px;
   }
+
   &__button {
     visibility: hidden;
     width: 80px;
@@ -99,15 +112,18 @@ export default {
     border-radius: 8px;
     border: none;
     cursor: pointer;
+
     @media(max-width: 960px){
       width: 40px;
       height: 24px;
       background-position: 9px 2px;
     }
+
     &:active {
       background-color: #b6e0ca;
     }
   }
+
   &:hover .catalog-item__button{
     visibility: visible;
   }

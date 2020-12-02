@@ -24,13 +24,13 @@ export default {
 </script>
 
 <style lang="scss">
+
 .modal-sort {
   width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
   right: 0;
-  // visibility: hidden; может пригодится для на анимации
   opacity: 1;
   background: rgba(0, 0, 0 , 0.7);
   z-index: 10;

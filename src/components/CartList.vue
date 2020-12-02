@@ -73,13 +73,13 @@ export default {
 </script>
 
 <style lang="scss">
+
 .modal-cart {
   width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
   right: 0;
-  // visibility: hidden;
   opacity: 1;
   background: rgba(0, 0, 0 , 0.7);
   z-index: 10;
@@ -90,6 +90,7 @@ export default {
     opacity: 1;
   }
 }
+
 .cart {
   padding: 29px 40px 120px 40px;
   height: 100%;
@@ -100,6 +101,7 @@ export default {
   transition: right 0.25s ease-in-out;
   display: flex;
   flex-direction: column;
+
   @media (max-width: 600px) {
     width: 375px;
   }
@@ -108,12 +110,14 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     &__title {
     font-weight: 500;
     font-size: 30px;
     line-height: 88%;
     letter-spacing: -0.04em;
     }
+
     &__close {
     width: 48px;
     height: 48px;
@@ -126,20 +130,23 @@ export default {
     cursor: pointer;
     }
   }
+
   .cart-items {
     overflow-y: hidden;
     display: flex;
     flex-direction: column;
 
     &__header {
-    margin-top: 83px;
-    display: flex;
-    justify-content: space-between;
+      margin-top: 83px;
+      display: flex;
+      justify-content: space-between;
     }
+
     &__amount {
       font-size: 14px;
       line-height: 112%;
     }
+
     &__clean {
       border: none;
       background-color: transparent;
@@ -155,6 +162,7 @@ export default {
     }
   }
 }
+
 .cart-form {
   overflow-y: scroll;
   margin-top: 10px;
@@ -170,19 +178,23 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   @media (max-width: 600px) {
     flex-wrap: wrap;
   }
+
   &__image_deleted,
   &__counter_deleted,
   &__detailes_deleted {
     opacity: 0.2;
   }
+
   &__detailes{
     padding: 16px 40px 0 8px;
+
     @media (max-width: 600px) {
-    order: 1;
-  }
+      order: 1;
+    }
   }
 
   &__title {
@@ -202,9 +214,10 @@ export default {
   &__counter {
     margin: 15px 21px 0 10px;
     display: flex;
+
     @media (max-width: 600px) {
-    order: 1;
-  }
+      order: 1;
+    }
   }
 
   &__minus {
@@ -216,6 +229,7 @@ export default {
     background-position: 11px 4px;
     background-color: #F2F2F2;
     border-radius: 4px;
+
     &:hover {
       cursor: pointer;
     }
@@ -229,6 +243,7 @@ export default {
     font-weight: normal;
     font-size: 16px;
     line-height: 100%;
+
     &:hover {
       cursor: pointer;
     }
@@ -243,6 +258,7 @@ export default {
     background-position: 11px 4px;
     background-color: #F2F2F2;
     border-radius: 4px;
+
     &:hover {
       cursor: pointer;
     }
@@ -257,6 +273,7 @@ export default {
     background-repeat: no-repeat;
     background-position: 3px 2px;
     background-color: transparent;
+
     &:hover {
       cursor: pointer;
     }
@@ -271,6 +288,7 @@ export default {
     background-repeat: no-repeat;
     background-position: 3px 2px;
     background-color: transparent;
+
     &:hover {
       cursor: pointer;
     }
@@ -278,45 +296,51 @@ export default {
 }
 
 .cart-footer {
-width: 520px;
-position: fixed;
-bottom: 40px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-@media (max-width: 600px) {
+  width: 520px;
+  position: fixed;
+  bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 600px) {
     width: 310px;
   }
-.cart-total {
-  margin-top: 5px;
-  &__label{
-    font-size: 16px;
-    line-height: 100%;
-}
-  &__cost {
+
+  .cart-total {
     margin-top: 5px;
+
+    &__label{
+      font-size: 16px;
+      line-height: 100%;
+    }
+
+    &__cost {
+      margin-top: 5px;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 100%;
+      letter-spacing: -0.02em;
+    }
+  }
+
+  &__order {
+    width: 241px;
+    height: 58px;
+    background: #7BB899;
+    border-radius: 4px;
+    border: none;
     font-weight: 500;
-    font-size: 30px;
-    line-height: 100%;
-    letter-spacing: -0.02em;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    @media (max-width: 600px) {
+      width: 156px;
+      height: 40px;
+    }
   }
-}
-&__order {
-  width: 241px;
-  height: 58px;
-  background: #7BB899;
-  border-radius: 4px;
-  border: none;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  @media (max-width: 600px) {
-    width: 156px;
-    height: 40px;
-  }
-}
 }
 
 </style>

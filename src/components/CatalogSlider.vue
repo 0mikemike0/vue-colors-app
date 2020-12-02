@@ -76,6 +76,7 @@ export default {
   }
 
 }
+
 .title-wrapper {
     position: absolute;
     top: 0;
@@ -88,9 +89,11 @@ export default {
     align-items: center;
     justify-content: center;
   }
+
 .slider {
   display: flex;
   transition: margin-left ease-in-out 0.5s;
+
   &__title {
     margin-bottom: 25px;
     font-weight: normal;
@@ -99,12 +102,14 @@ export default {
     letter-spacing: -0.02em;
     color: #FFFFFF;
   }
+
   &__detailes {
     font-weight: 500;
     font-size: 16px;
     line-height: 130%;
     letter-spacing: 0.03em;
   }
+
   &__buttons {
     position: absolute;
     width: 59vw;
@@ -114,6 +119,7 @@ export default {
     display: flex;
     justify-content: space-between;
   }
+
   &__button-prev,
   &__button-next {
     width: 80px;
@@ -124,13 +130,16 @@ export default {
     border: none;
     cursor: pointer;
   }
+
   &__button-next {
     background-image: url(~@/assets/images/next.svg);
 
   }
+
   &__button-prev {
     background-image: url(~@/assets/images/prev.svg);
   }
+
   &__pages {
     position: absolute;
     top: 86.7%;
@@ -144,12 +153,15 @@ export default {
     justify-content: center;
     align-items: center;
   }
+
   &__page {
     margin: 0 8px 3px 0;
   }
+
   &__page:last-child {
     margin-right: 0;
   }
+
   &__page-button {
     vertical-align: middle;
     width: 6px;
@@ -159,6 +171,7 @@ export default {
     background: #FFFFFF;
     opacity: 0.2;
     cursor: pointer;
+
     &_current {
       opacity: 1;
     }

@@ -11,8 +11,10 @@ export default {
 </script>
 
 <style lang="scss">
+
 .slide {
   position: relative;
+
   &__image {
     min-width: 100%;
     height: auto;

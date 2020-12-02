@@ -176,21 +176,32 @@ export default {
 <style lang="scss">
 
 .header {
+
   &-wrapper {
-  max-width: 1840px;
-  margin: auto;
-  padding: 36px 20px 38px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  @media(max-width: 960px){
-    padding: 63px 20px 20px 20px;
-  }
+    max-width: 1840px;
+    margin: auto;
+    padding: 36px 20px 38px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media(max-width: 960px){
+      padding: 63px 20px 20px 20px;
+    }
   }
 
   &__logo {
     margin-left: 4px;
   }
+
+  &__contact {
+    margin: 0 0 0 22px;
+
+    @media(max-width: 960px) {
+      @include visually-hidden;
+    }
+  }
+
 }
 
 .burger {
@@ -214,6 +225,7 @@ export default {
     width: 100%;
     background-color: $main-color;
   }
+
   &__line:nth-child(1) {
     right: 0;
     top: 0;
@@ -233,41 +245,41 @@ export default {
 
 .nav {
   padding-right: 385px;
+
   &__list {
     margin-left: 81px;
     display: flex;
   }
+
   &__item {
     margin-right: 24px;
   }
+
   &__link {
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
+
   @media (max-width: 1660px) {
     @include visually-hidden;
   }
-}
 
-.header__contact {
-  margin: 0 0 0 22px;
-  @media(max-width: 960px) {
-    @include visually-hidden;
-  }
 }
 
 .contact {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
   &__tel {
     font-weight: 500;
     font-size: 16px;
     line-height: 100%;
     letter-spacing: 0.02em;
   }
+
   &__callback {
     border: none;
     background: transparent;
@@ -281,21 +293,26 @@ export default {
       cursor: pointer;
     }
   }
+
 }
 
 .buttons {
   margin-right: 4px;
+
   &__list {
     display: flex;
     justify-content: flex-end;
     align-items: center;
   }
+
   &__item {
     margin-left: 24px;
+
     @media(max-width: 960px){
       margin-left: 0;
+    }
   }
-  }
+
   &__search {
     display: inline-block;
     vertical-align: middle;
@@ -307,10 +324,12 @@ export default {
     background-size: 118px 24px;
     background-position: 2px 0;
     background-repeat: no-repeat;
+
     @media(max-width: 960px) {
-    @include visually-hidden;
+      @include visually-hidden;
+    }
   }
-  }
+
   &__profile {
     display: inline-block;
     vertical-align: middle;
@@ -322,10 +341,12 @@ export default {
     background-size: 118px 24px;
     background-position: -46px 0;
     background-repeat: no-repeat;
+
     @media(max-width: 960px) {
-    @include visually-hidden;
+      @include visually-hidden;
+    }
   }
-  }
+
   &__favourites {
     display: inline-block;
     vertical-align: middle;
@@ -337,10 +358,12 @@ export default {
     background-size: 118px 24px;
     background-position: -95px 0;
     background-repeat: no-repeat;
+
     @media(max-width: 960px) {
-    @include visually-hidden;
+      @include visually-hidden;
+    }
   }
-  }
+
   &__cart {
     display: inline-block;
     vertical-align: middle;
@@ -349,8 +372,8 @@ export default {
     border: none;
     background-color: #7BB899;
     border-radius: 50%;
-
   }
+
 }
 
 .breadcrumbs-wrapper {
@@ -358,32 +381,39 @@ export default {
   margin: 0 20px 0;
   top: 25px;
   left: 45px;
+
   @media(max-width: 1024px) {
     position: unset;
     padding: 8px 0 0 5px;
     border-top: 1px solid rgba(0, 0, 0, 0.06)
   }
+
 }
-  .breadcrumbs {
-    &__item {
+
+.breadcrumbs {
+  &__item {
     font-size: 10px;
     line-height: 100%;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #FFFFFF;
     opacity: 0.3;
+
     @media (max-width: 1024px){color: $main-color;}
   }
+
   &__item:after {
     content: "\2022";
     margin-left: 6px;
     margin-right: 6px;
   }
+
   &__item:last-child:after {
     content: "";
     margin-left: 0;
     margin-right: 0;
   }
+
 }
 
 .main-wrapper {
@@ -392,7 +422,7 @@ export default {
   margin: auto;
   padding: 36px 20px 0 17px;
   display: flex;
-  }
+}
 
 .mobile-title {
   margin: 46px 20px 0 24px;
@@ -401,10 +431,11 @@ export default {
   line-height: 88%;
   letter-spacing: -0.04em;
 
- @media (min-width: 1025px){
+  @media (min-width: 1025px){
     @include visually-hidden;
   }
 }
+
 .catalog-header {
   flex-basis: 100%;
   display: flex;
@@ -419,6 +450,7 @@ export default {
     letter-spacing: 0.06em;
     text-transform: uppercase;
     cursor: pointer;
+
     @media(min-width: 961px){
       @include visually-hidden;
     }
@@ -430,6 +462,7 @@ export default {
     line-height: 15px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+
     @media(max-width: 960px){
       @include visually-hidden;
     }
@@ -446,6 +479,7 @@ export default {
     letter-spacing: 0.11em;
     text-transform: uppercase;
     cursor: pointer;
+
     &__arrow {
       display: inline-block;
       width: 14px;
